@@ -29,9 +29,6 @@
       &.inactive {
         opacity: 0.5;
       }
-      &:is(:hover) {
-        color: var(--highlight);
-      }
     }
   }
 }

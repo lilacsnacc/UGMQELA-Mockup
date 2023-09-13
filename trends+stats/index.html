@@ -61,6 +61,28 @@
         per Quality Issue
       </h1>
       <canvas id="chart2"></canvas>
+
+      <p>Work Instructions Notes</p>
+      <details>
+        <summary class="interactive">Cracked Sink</summary>
+        <input class="interactive" placeholder="Work instruction notes..." />
+      </details>
+      <details>
+        <summary class="interactive">Wrong Remnant</summary>
+        <input class="interactive" placeholder="Work instruction notes..." />
+      </details>
+      <details>
+        <summary class="interactive">Short Piece</summary>
+        <input class="interactive" placeholder="Work instruction notes..." />
+      </details>
+      <details>
+        <summary class="interactive">Silicone</summary>
+        <input class="interactive" placeholder="Work instruction notes..." />
+      </details>
+      <details>
+        <summary class="interactive">Missed Appt</summary>
+        <input class="interactive" placeholder="Work instruction notes..." />
+      </details>
     </main>
 
     <footer>
@@ -112,6 +134,18 @@
         // --- create CostPerQualityIssue Chart
         const ctx2 = document.getElementById('chart2')
         const barChart = getCostPerQualityIssueChart(ctx2)
+
+        // --- "toggle quality issue work instructions filled" listeners
+        const qualityIssueWorkInstructions = document?.querySelectorAll('details input')
+        function onWorkInstructionInput(ev) {
+          const parentElem = ev.currentTarget.parentElement
+
+          parentElem?.classList.toggle('filled', !!ev.currentTarget.value)
+        }
+
+        qualityIssueWorkInstructions.forEach(elem =>
+          elem.addEventListener('input', onWorkInstructionInput)
+        )
       }
 
       window.addEventListener('load', initCharts)
