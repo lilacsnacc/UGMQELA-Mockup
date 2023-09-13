@@ -41,7 +41,7 @@ table {
   padding: 16px 0;
   text-align: left;
 
-  & th span.active {
+  & th span {
     color: var(--highlight);
     font-size: 1.2em;
   }

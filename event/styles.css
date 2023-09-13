@@ -34,6 +34,21 @@ main div {
   }
 }
 
+#log-sort-header {
+  justify-content: space-between;
+  padding: 0 16px;
+  font-weight: bold;
+
+  & p {
+    margin: 8px 0;
+  }
+
+  & span {
+    color: var(--highlight);
+    font-size: 1.2em;
+  }
+}
+
 details {
   margin-bottom: 2px;
   background: var(--background-transparent);
