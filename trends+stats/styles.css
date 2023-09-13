@@ -1,0 +1,22 @@
+.export-data-bttn {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+canvas {
+  padding: 8px;
+  margin: 8px auto;
+  width: 100% !important; /* bc chart.js adds styles onto the element itself */
+  height: auto !important;
+  aspect-ratio: 2;
+  background-color: #fffa;
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 2em;
+  text-align: center;
+  &:not(:first-of-type) {
+    margin-top: 64px;
+  }
+}

@@ -1,0 +1,26 @@
+:root {
+  --primary: #eee;
+  --highlight: #e56820;
+  --highlight-alt: #ff853f;
+  --background: #222;
+  --background-alt: #444;
+  --background-transparent: #222c;
+
+  --side-padding: 32px;
+
+  color-scheme: dark;
+}
+:root.light {
+  --primary: #222;
+  --background: #eee;
+  --background-alt: #ccc;
+  --background-transparent: #eeec;
+
+  color-scheme: light;
+}
+
+@media (orientation: landscape) {
+  :root {
+    --side-padding: 96px;
+  }
+}

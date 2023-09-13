@@ -1,0 +1,81 @@
+main div {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 16px 0;
+}
+
+#general-data {
+  flex-wrap: wrap;
+
+  & button.lvl-toggle {
+    width: 64px;
+    height: auto;
+    aspect-ratio: 1;
+    line-height: 1em;
+    font-size: 2em;
+    font-weight: normal;
+    border-radius: 100%;
+    border: 8px solid #222a;
+    transition: border-color 125ms linear;
+    &.high-lvl {
+      color: var(--highlight-alt);
+      border-color: var(--highlight-alt);
+    }
+  }
+}
+
+#entry-list-header {
+  justify-content: space-between;
+  & p {
+    margin: 0;
+    font-size: 2em;
+  }
+}
+
+details {
+  margin-bottom: 2px;
+  background: var(--background-transparent);
+
+  &[open] summary {
+    background-color: var(--highlight-alt);
+  }
+  & summary {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4px 16px;
+    box-sizing: border-box;
+    background-color: var(--background-alt);
+    &:is(:hover) {
+      background-color: var(--background);
+    }
+  }
+
+  & .entry-options {
+    flex-wrap: wrap;
+    padding: 16px var(--side-padding);
+
+    & input,
+    & label {
+      flex: unset;
+      color-scheme: light; /* chrome does things that interfere with the design */
+    }
+
+    & select {
+      flex: 1;
+
+      & option:is(:last-child) {
+        color: var(--highlight-alt);
+      }
+    }
+  }
+
+  & textarea {
+    width: 100%;
+    max-width: calc(100% - 2 * var(--side-padding));
+    margin: 16px var(--side-padding);
+    box-sizing: border-box;
+  }
+}

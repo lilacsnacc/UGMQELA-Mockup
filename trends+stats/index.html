@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Trends + Stats | UGM Quality Event Logger & Analyzer</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" href="/styles/var.css" />
+    <link rel="stylesheet" href="/styles/default.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"
+      integrity="sha256-6nqzDSbDjc8fLSa7Q+c6lFN7WPGQb1XhpUbdCTIbVhU="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/scripts/init-header.js"></script>
+  </head>
+  <body>
+    <header>
+      <img
+        class="logo-img"
+        src="/images/logo-white.png"
+        alt="Upstate Granite & Marble logo"
+        title="Upstate Granite & Marble"
+      />
+      <nav class="landscape-only">
+        <a class="interactive" href="/">EVENTS LIST</a>
+        <a class="interactive active" href="/trends+stats">TRENDS + STATS</a>
+      </nav>
+      <button class="interactive landscape-only light-mode-toggle">&#9728;</button>
+      <button class="interactive portrait-only" id="mobile-menu-bttn">&#8801;</button>
+    </header>
+
+    <main>
+      <button class="interactive color export-data-bttn no-print">Export Data</button>
+
+      <h1>
+        Total Cost v. Time,
+        <select id="tcvtTimeUnit">
+          <option value="week">Weekly</option>
+          <option value="month">Monthly</option>
+          <option value="quarter">Quarterly</option>
+          <option value="year">Yearly</option>
+        </select>
+      </h1>
+      <canvas id="chart1"></canvas>
+
+      <h1>
+        <select>
+          <option value="count">Count</option>
+          <option value="price">Price</option>
+        </select>
+        per Quality Issue
+      </h1>
+      <canvas id="chart2"></canvas>
+    </main>
+
+    <footer>
+      <p>© 2023 UGM Quality Event Logger & Analyzer v0.0.1</p>
+      <button class="interactive no-print" id="to-top-bttn">&#9650;</button>
+    </footer>
+
+    <div class="menu hidden" id="mobile-menu">
+      <button class="interactive close-menu-bttn">&#10005;</button>
+      <nav>
+        <button class="interactive color export-data-bttn">EXPORT DATA</button>
+        <p><a class="interactive" href="/">EVENTS LIST</a></p>
+        <p><a class="interactive active" href="/trends+stats">TRENDS + STATS</a></p>
+        <p class="interactive light-mode-toggle">TOGGLE <span>&#9728;</span></p>
+      </nav>
+    </div>
+
+    <script>
+      const moneyPrinter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      })
+    </script>
+
+    <script src="./TotalCostVTime.chart.js"></script>
+    <script src="./CostPerQualityIssue.chart.js"></script>
+
+    <script>
+      function initCharts() {
+        // --- set chart font to "16px, black"
+        Chart.defaults.color = '#000'
+        Chart.defaults.font.size = 16
+
+        // --- create TotalCostVTime chart
+        const ctx = document.getElementById('chart1')
+        const lineChart = getTotalCostVTimeChart(ctx)
+
+        // --- "change unit of time for TotalCostVTime chart" listener
+        const timeSelector = document.querySelector('#tcvtTimeUnit')
+
+        timeSelector?.addEventListener('change', ev => {
+          const newUnit = ev.currentTarget.value
+          lineChart.options.scales.x.time.unit = newUnit
+          lineChart.update()
+        })
+
+        // --- create CostPerQualityIssue Chart
+        const ctx2 = document.getElementById('chart2')
+        const barChart = getCostPerQualityIssueChart(ctx2)
+      }
+
+      window.addEventListener('load', initCharts)
+    </script>
+  </body>
+</html>
